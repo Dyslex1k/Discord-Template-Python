@@ -14,7 +14,7 @@ class MyBot(commands.Bot):
 
     async def setup_hook(self):
         # List of folders to scan for autoloading
-        folders = ["commands", "Listeners"]
+        folders = ["commands", "listeners"]
         
         for folder in folders:
             if not os.path.exists(folder):
