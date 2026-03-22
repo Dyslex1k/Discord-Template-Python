@@ -19,8 +19,7 @@ COPY tests/ /app/tests/
 WORKDIR /app/src
 
 # Run tests in container build; fail fast if tests fail
-RUN PYTHONPATH=/install/lib/python3.12/site-packages:/app/src pip install pytest pytest-asyncio && \
-    PYTHONPATH=/install/lib/python3.12/site-packages:/app/src pytest /app/tests
+RUN PYTHONPATH=/install/lib/python3.12/site-packages:/app/src pytest /app/tests
 
 
 # ── Stage 2: final runtime image ─────────────────────────────────────────────

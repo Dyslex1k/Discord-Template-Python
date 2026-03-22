@@ -1,13 +1,11 @@
 name: Python pytest CI
 
 on:
-  push:
-    branches: [ 'master', 'dev' ]
   pull_request:
     branches: [ 'master', 'dev' ]
 
 jobs:
-  test:
+  CI:
     runs-on: ubuntu-latest
 
     steps:
