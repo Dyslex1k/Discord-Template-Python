@@ -13,6 +13,14 @@ COPY requirements.txt .
 RUN pip install --upgrade pip \
     && pip install --prefix=/install --no-cache-dir -r requirements.txt
 
+# Copy source + tests for validation in builder stage
+COPY src/ /app/src/
+COPY tests/ /app/tests/
+WORKDIR /app/src
+
+# Run tests in container build; fail fast if tests fail
+RUN pip install pytest && pytest -q /app/tests
+
 
 # ── Stage 2: final runtime image ─────────────────────────────────────────────
 FROM python:3.12-slim AS runtime
@@ -34,4 +42,4 @@ USER botuser
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-CMD ["python", "bot.py"]
+CMD ["python", "main.py"]
